@@ -33,6 +33,7 @@
                     </items>
                   </Menu>
                   <MenuItem mnemonicParsing="false" onAction="#toNegative" text="Negative" />
+                  <MenuItem mnemonicParsing="false" onAction="#blackAndWhite" text="Monochrome" />
                </items>
             </Menu>
         </menus>

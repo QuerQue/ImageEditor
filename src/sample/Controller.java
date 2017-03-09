@@ -8,10 +8,13 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Logger;
+
+import static oracle.jrockit.jfr.events.Bits.intValue;
 
 public class Controller {
 
@@ -96,8 +99,7 @@ public class Controller {
                 b = 255 - b;
 
                 p = (a<<24) | (r<<16) | (g<<8) | b;
-                bufferedImage.setRGB(x, y, p);
-
+                System.out.print(p);
             }
         }
         Image image = SwingFXUtils.toFXImage(bufferedImage, null);
@@ -107,7 +109,33 @@ public class Controller {
 
     @FXML
     private void blackAndWhite(){
+            int width = bufferedImage.getWidth();
+            int height = bufferedImage.getHeight();
 
+            Color color;
+            int newColor;
+            Color white = new Color(255, 255, 255);
+            Color black = new Color(0, 0, 0);
+            int whiteRGB = white.getRGB();
+            int blackRGB = black.getRGB();
+
+            for(int y=0; y<height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    color = new Color(bufferedImage.getRGB(x, y));
+                    newColor = intValue(color.getRed()*0.7 + color.getGreen()*0.2 + color.getBlue()*0.1);
+                    if(newColor < 127)
+                        newColor = whiteRGB;
+                    else
+                        newColor = blackRGB;
+
+                    bufferedImage.setRGB(x, y, newColor);
+                }
+            }
+        Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+        imageSpace.setImage(image);
     }
+
 
 }
