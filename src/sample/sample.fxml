@@ -32,8 +32,8 @@
                         <MenuItem mnemonicParsing="false" onAction="#rotateButton360" text="360°" />
                     </items>
                   </Menu>
-                  <MenuItem mnemonicParsing="false" onAction="#toNegative" text="Negative" />
-                  <MenuItem mnemonicParsing="false" onAction="#blackAndWhite" text="Monochrome" />
+                  <MenuItem mnemonicParsing="false" onAction="#negativeButton" text="Negative" />
+                  <MenuItem mnemonicParsing="false" onAction="#monochromeButton" text="Monochrome" />
                </items>
             </Menu>
         </menus>
